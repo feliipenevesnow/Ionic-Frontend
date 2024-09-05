@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Listar Usuários
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+ 
+  <div *ngIf="dados" class="user-list-container">
+    <h3>Página: {{ dados.page }}</h3>
+    <h3>Total de Páginas: {{ dados.total_pages }}</h3>
+    <h2>Lista de Usuários</h2>
+    <ion-list>
+      <ion-item *ngFor="let item of dados.data">
+        <ion-avatar slot="start">
+          <img [src]="item.avatar" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item.first_name + ' ' + item.last_name }}</h2>
+          <p>{{ item.email }}</p>
+        </ion-label>
+        <ion-button slot="end" (click)="editarUsuario(item)">Editar</ion-button>
+        <ion-button slot="end" color="danger" (click)="deletarUsuario(item.id)">Excluir</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
